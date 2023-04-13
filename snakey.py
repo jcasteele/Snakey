@@ -20,7 +20,7 @@ class Dot:
             
             self.eaten = False
             
-        elif self.locate.x <= (0 + cell) or self.locate.x >= (800 - cell):
+        elif self.locate.x <= (0 + cell) or self.locate.x >= (500 - cell):
             self.location()
             pygame.draw.circle(screen, "green", self.locate, self.rad)
             
@@ -71,10 +71,10 @@ class Snake:
             if self.body[0] == segment:            
                 self.dead = True
         
-        if self.body[0].x <= 0 or self.body[0].x >= 800:
+        if self.body[0].x <= 15 or self.body[0].x >= 500:
             self.dead = True
         
-        if self.body[0].y <= 0 or self.body[0].y >= 800:
+        if self.body[0].y <= 15 or self.body[0].y >= 785:
             self.dead = True
         
 class Main:
@@ -90,6 +90,11 @@ class Main:
     def draw_game(self):
         self.dot.draw_dot()
         self.snake.draw_snake()
+        
+        pygame.draw.line(screen, "black", (0, 0), (510, 0), 10)
+        pygame.draw.line(screen, "black", (0, 800), (510, 800), 10)
+        pygame.draw.line(screen, "black", (0, 0), (0, 800), 10)
+        pygame.draw.line(screen, "black", (510, 0), (510, 800), 5)
     
     def eat(self):
         if self.dot.locate == self.snake.body[0]:
